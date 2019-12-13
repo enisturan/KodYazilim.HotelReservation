@@ -1,9 +1,8 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace KodProje.Models
+
+namespace KodYazilim.HotelReservation.CoreMVC.Angular.Models
 {
-    [Table("Reservation")]
     public class Reservation
     {
         public int Id { get; set; }
@@ -14,6 +13,6 @@ namespace KodProje.Models
         public DateTime CheckInDate { get; set; }
         public DateTime PayDate { get; set; }
         public int Duration { get; set; }
-        public decimal? Price { get; set; }
+        public int Price { get; set; }
     }
 }

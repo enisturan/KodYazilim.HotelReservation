@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace KodProje.Models
+namespace KodYazilim.HotelReservation.CoreMVC.Angular.Models
 {
     [Table("HotelPrice")]
     public class HotelPrice

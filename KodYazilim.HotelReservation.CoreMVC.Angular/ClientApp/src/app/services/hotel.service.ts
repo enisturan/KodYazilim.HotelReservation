@@ -10,11 +10,11 @@ export class HotelService {
   path = "https://localhost:44303/api/";
 
   getHotels():Observable<Hotel[]> {
-    return this.httpClient.get<Hotel[]>(this.path + "hotel");
+    return this.httpClient.get<Hotel[]>(this.path + "hotels");
   }
 
   getHotelById(id):Observable<Hotel> {
-    return this.httpClient.get<Hotel>(this.path + "hotel/" + id);
+    return this.httpClient.get<Hotel>(this.path + "hotels/" + id);
   }
 
   add(rezervasyonlar:Rezervasyon[]):Observable<Rezervasyon[]> {
