@@ -1,0 +1,12 @@
+h3{
+    text-align: center;
+    margin-top: 5px;
+}
+.list-group-item{
+    height: 60px;
+    width: 100px;
+}
+
+h5{
+    text-align: center;
+}

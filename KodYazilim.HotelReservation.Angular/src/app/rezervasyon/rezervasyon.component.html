@@ -1,0 +1,63 @@
+<h3 class="mt-2">Rezervasyon Ekle</h3>
+
+<form [formGroup]="rezForm" class="form-group">
+<div class="container mt-4">
+  <div class="row">
+    <div *ngFor="let adult of adultArray" class="col-md-6 ">
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> Yetişkin </span>
+        </div>
+        <input class="form-control" formControlName="nameSurname" placeholder="Adı Soyadı" type="text"/>
+      </div>
+    </div>
+  </div>
+  
+<div>
+  <div class="row">
+    <div *ngFor="let adult of adultArray" class="col-md-6">
+      <div class="form-group input-group">
+        <div class="input-group-prepend ">
+          <span class="input-group-text">Yetişkin</span>
+        </div>
+        <input class="form-control" formControlName="birthday" placeholder="Doğum Tarihi" type="text"/>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="container mt-4">
+  <div class="row">
+    <div *ngFor="let chd of childArray" class="col-md-6">
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Çocuk</span>
+        </div>
+        <input class="form-control" formControlName="nameSurname" placeholder="Adı Soyadı" type="text"/>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div *ngFor="let chd of childArray" class="col-6">
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Çocuk</span>
+        </div>
+        <input class="form-control" formControlName="birthday" placeholder="Doğum Tarihi" type="text"/>
+      </div>
+    </div>
+        <input type="hidden" class="form-control mt-2" formControlName="hotelName" placeholder="Hotel Adı" [(ngModel)]="hotelName">
+        <input type="text" class="form-control mt-2"  formControlName="price" placeholder="Fiyat" [(ngModel)]="price"> 
+        <input type="text" class="form-control mt-2" formControlName="checkInDate" placeholder="Giriş Tarihi" [(ngModel)]="checkInDate">
+        <input type="text" class="form-control mt-2" formControlName="payDate" placeholder="Çıkış Tarihi" [(ngModel)]="payDate">
+        <input type="text" class="form-control mt-2" formControlName="duration" placeholder="Süre" [(ngModel)]="duration">
+        <input type="text" class="form-control mt-2" formControlName="roomName" placeholder="Oda Tipi" [(ngModel)]="roomName"> 
+  </div>
+  <div> 
+      <button type="submit" class="btn btn-success mt-4" (click)="add()">Kaydet</button>
+      
+  </div>
+</div>   
+</form>
+  
