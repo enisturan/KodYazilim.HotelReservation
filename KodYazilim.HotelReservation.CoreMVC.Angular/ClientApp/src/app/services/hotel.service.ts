@@ -14,7 +14,7 @@ export class HotelService {
   }
 
   getHotelById(id):Observable<Hotel> {
-    return this.httpClient.get<Hotel>(this.path + "hotels/" + id);
+    return this.httpClient.get<Hotel>(this.path + "hotel/" + id);
   }
 
   add(rezervasyonlar:Rezervasyon[]):Observable<Rezervasyon[]> {
