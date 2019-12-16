@@ -15,10 +15,9 @@ namespace KodProje.Controllers
         private readonly DataContext _context;
         private readonly IMapper _mapper;
 
-        public ReservationController(IAppRepository appRepository, DataContext context, IMapper mapper)
+        public ReservationController(IAppRepository appRepository, DataContext context)
         {
             _context = context;
-            _mapper = mapper;
             _appRepository = appRepository;
         }
 

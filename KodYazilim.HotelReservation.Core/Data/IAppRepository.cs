@@ -5,9 +5,11 @@ namespace KodProje.Data
 {
     public interface IAppRepository
     {
-        List<HotelPrice> GetPrice();
-        List<Reservation> GetRezervasyons();
         void Add<T>(T entity) where T : class;
         bool SaveAll();
+
+        List<HotelPrice> GetPrice();
+        List<Reservation> GetRezervasyons();
+        
     }
 }

@@ -21,7 +21,7 @@ export class HotelComponent implements OnInit {
   ];
 
   dsHotels: any = new MatTableDataSource<Hotel[]>([]);
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+    @ViewChild(MatPaginator, { read: true }) paginator: MatPaginator;
 
   constructor(private hotelservice: HotelService, private router: Router) {}
 

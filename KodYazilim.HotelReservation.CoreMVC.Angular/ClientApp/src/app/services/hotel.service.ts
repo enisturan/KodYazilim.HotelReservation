@@ -7,10 +7,10 @@ import { Rezervasyon } from '../rezervasyon';
 @Injectable()
 export class HotelService {
   constructor(private httpClient: HttpClient) {}
-  path = "https://localhost:44303/api/";
+    path = "http://localhost:9220/api/";
 
   getHotels():Observable<Hotel[]> {
-    return this.httpClient.get<Hotel[]>(this.path + "hotels");
+    return this.httpClient.get<Hotel[]>(this.path + "hotel");
   }
 
   getHotelById(id):Observable<Hotel> {

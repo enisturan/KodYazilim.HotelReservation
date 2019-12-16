@@ -58,11 +58,14 @@ namespace KodProje
                 app.UseHsts();
             }
 
+            #region Cors Configuration
             app.UseCors(builder => builder
             .AllowAnyOrigin()
             .AllowAnyMethod()
             .AllowAnyHeader()
             .AllowCredentials());
+            #endregion
+
 
             app.UseHttpsRedirection();
             app.UseMvc();
