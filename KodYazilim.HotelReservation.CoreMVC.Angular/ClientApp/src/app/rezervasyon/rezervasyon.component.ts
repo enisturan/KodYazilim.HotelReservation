@@ -40,6 +40,30 @@ export class RezervasyonComponent implements OnInit {
             data => {
                 console.log(data);
 
+                var adultCount = data.numberOfAd;
+                let adultArray = this.rezForm.controls.adultArray as FormArray;
+                let adult: any = {
+                    "nameSurname": "yetişkin adı",
+                    "birthday": "1.1.1950"
+                };
+
+                for (let i = 0; i < adultCount; i++) {
+                    adultArray.push(this.fb.group(adult));
+                }
+
+                var childCount = data.numberOfChd;
+                let childArray = this.rezForm.controls.childArray as FormArray;
+                let child: any = {
+                    "nameSurname": "çocuk adı",
+                    "birthday": "1.1.2010"
+                };
+
+                for (let i = 0; i < childCount; i++) {
+                    childArray.push(this.fb.group(child));
+                }
+
+
+
                 this.rezForm.patchValue({
                     hotelName: data.hotelName,
                     price: data.price,
@@ -48,26 +72,6 @@ export class RezervasyonComponent implements OnInit {
                     payDate: data.payDate,
                     duration: data.duration,
                 });
-
-                var adultCount = data.numberOfAd;
-                for (let i = 0; i < adultCount; i++) {
-                    (this.rezForm.controls.adultArray as FormArray).push(
-                        this.fb.group({
-                            "nameSurname": "yetişkin adı",
-                            "birthday":"1.1.1950"
-                        })
-                    );
-                }
-
-                var childCount = data.numberOfChd;
-                for (let i = 0; i < childCount; i++) {
-                    (this.rezForm.controls.childArray as FormArray).push(
-                        this.fb.group({
-                            "nameSurname": "çocuk adı",
-                            "birthday": "1.1.2010"
-                        })
-                    );
-                }
             },
             err => {
                 console.error("Hata oluştu: ", err);
@@ -78,7 +82,7 @@ export class RezervasyonComponent implements OnInit {
 
     add() {
         if (this.rezForm.valid) {
-            var data:any = {
+            var data: any = {
                 adultArray: this.rezForm.value.adultArray,
                 childArray: this.rezForm.value.childArray,
                 hotelInfo: {
@@ -92,11 +96,9 @@ export class RezervasyonComponent implements OnInit {
             };
             console.log("data:", data);
 
-            this.hotelservice.add(data).subscribe(data => {
+            this.hotelservice.add(data).subscribe( (data:any) => {
                 console.log("gelen add sonucu:", data);
-                //if (data.length == this.rezForm.value.length)
-                //    alert("ekleme başarılı. Rezervasyon numaranız: " + data[0].Id);
-                //else alert("ekleme olmadı");
+                alert("ekleme başarılı. Rezervasyon numaranız: " + data[0].id);
             });
         }
     }
