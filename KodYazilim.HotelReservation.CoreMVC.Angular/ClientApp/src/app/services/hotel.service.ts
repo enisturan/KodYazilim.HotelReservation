@@ -18,7 +18,7 @@ export class HotelService {
     return this.httpClient.get<Hotel>(this.path + "hotel/" + id);
   }
 
-  add(rezervasyonlar:Rezervasyon[]):Observable<Rezervasyon[]> {
-    return this.httpClient.post<Rezervasyon[]>(this.path + "reservation", rezervasyonlar);
+  add(reservationData:any):Observable<Rezervasyon[]> {
+      return this.httpClient.post<Rezervasyon[]>(this.path + "reservation", reservationData);
   }
 }

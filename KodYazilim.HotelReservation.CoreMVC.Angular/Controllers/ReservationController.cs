@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using KodYazilim.HotelReservation.CoreMVC.Angular.Dtos;
+using System.Collections.Generic;
 
 namespace KodYazilim.HotelReservation.CoreMVC.Angular.Controllers
 {
@@ -43,18 +45,48 @@ namespace KodYazilim.HotelReservation.CoreMVC.Angular.Controllers
         }
         
         [HttpPost]
-        public ActionResult Add([FromBody] Reservation[] rezervasyon)
+        public ActionResult Add([FromBody] ReservationInfo reservationInfo)
         {
-            Console.WriteLine("Console - Burada");
-            Debug.WriteLine("Debug - Burada");
-            Debugger.Log(0,"hede","Debugger - Burada");
-            foreach (var r in rezervasyon)
+            var reservations = new List<Reservation>();
+            foreach (var r in reservationInfo.adultArray)
             {
-                _appRepository.Add(r);
+                var reservation = new Reservation {
+                    NameSurname = r.nameSurname,
+                    Birthday = r.birthday,
+
+                    CheckInDate = reservationInfo.hotelInfo.checkInDate,
+                    Duration = reservationInfo.hotelInfo.duration,
+                    PayDate = reservationInfo.hotelInfo.payDate,
+                    Price = reservationInfo.hotelInfo.price,
+                    RoomName = reservationInfo.hotelInfo.roomName,
+                    HotelName = reservationInfo.hotelInfo.hotelName,
+                };
+                _appRepository.Add(reservation);
                 _appRepository.SaveAll();
+
+                reservations.Add(reservation);
             }
 
-            return Ok(rezervasyon);
+            foreach (var r in reservationInfo.childArray)
+            {
+                var reservation = new Reservation {
+                    NameSurname = r.nameSurname,
+                    Birthday = r.birthday,
+
+                    CheckInDate = reservationInfo.hotelInfo.checkInDate,
+                    Duration = reservationInfo.hotelInfo.duration,
+                    PayDate = reservationInfo.hotelInfo.payDate,
+                    Price = reservationInfo.hotelInfo.price,
+                    RoomName = reservationInfo.hotelInfo.roomName,
+                    HotelName = reservationInfo.hotelInfo.hotelName,
+                };
+                _appRepository.Add(reservation);
+                _appRepository.SaveAll();
+
+                reservations.Add(reservation);
+            }
+
+            return Ok(reservations);
         }
     }
 }
