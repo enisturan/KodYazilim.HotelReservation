@@ -1,13 +1,19 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using KodYazilim.HotelReservation.CoreMVC.Angular.Data;
 using KodYazilim.HotelReservation.CoreMVC.Angular.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace KodYazilim.HotelReservation.CoreMVC.Angular.Controllers
 {
-    [Route("api/[controller]")]
+    /* 
+     * [Route("api/[controller]")]   api/[controller] > localhost:1234/api/Reservation
+     * [Route("api/rezervasyon")]    api/rezervasyon  > localhost:1234/api/rezervasyon
+     */ 
+    [Route("api/[controller]")] 
     [ApiController]
     public class ReservationController : ControllerBase
     {
@@ -39,6 +45,9 @@ namespace KodYazilim.HotelReservation.CoreMVC.Angular.Controllers
         [HttpPost]
         public ActionResult Add([FromBody] Reservation[] rezervasyon)
         {
+            Console.WriteLine("Console - Burada");
+            Debug.WriteLine("Debug - Burada");
+            Debugger.Log(0,"hede","Debugger - Burada");
             foreach (var r in rezervasyon)
             {
                 _appRepository.Add(r);

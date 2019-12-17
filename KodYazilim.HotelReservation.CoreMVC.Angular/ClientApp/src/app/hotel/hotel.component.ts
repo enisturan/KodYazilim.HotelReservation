@@ -23,7 +23,8 @@ export class HotelComponent implements OnInit {
   dsHotels: any = new MatTableDataSource<Hotel[]>([]);
     @ViewChild(MatPaginator, { read: true }) paginator: MatPaginator;
 
-  constructor(private hotelservice: HotelService, private router: Router) {}
+    constructor(private hotelservice: HotelService,
+        private router: Router) { }
 
   ngOnInit() {
     this.hotelservice.getHotels().subscribe(

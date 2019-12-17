@@ -1,8 +1,9 @@
 ﻿using System;
-
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KodYazilim.HotelReservation.CoreMVC.Angular.Models
 {
+    [Table("Reservation")]
     public class Reservation
     {
         public int Id { get; set; }

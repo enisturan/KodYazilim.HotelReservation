@@ -32,8 +32,7 @@ namespace KodYazilim.HotelReservation.CoreMVC.Angular.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult> GetHotel(int id)
         {
-            var hotel = await _context.HotelPrices.FirstOrDefaultAsync(
-                h => h.Id == id);
+            var hotel = await _context.HotelPrices.FirstOrDefaultAsync(h => h.Id == id);
             return Ok(hotel);
         }
 
