@@ -69,6 +69,8 @@ namespace KodProje
 
             app.UseHttpsRedirection();
             app.UseMvc();
+            //app.UseMvcWithDefaultRoute();
+            
         }
     }
 }

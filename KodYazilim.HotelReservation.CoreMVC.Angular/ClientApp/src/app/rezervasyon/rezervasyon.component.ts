@@ -4,21 +4,23 @@ import { HotelService } from "../services/hotel.service";
 import { FormBuilder, FormGroup, Validators, FormArray } from "@angular/forms";
 import { Rezervasyon } from "../rezervasyon";
 
+
 @Component({
     selector: "app-rezervasyon",
     templateUrl: "./rezervasyon.component.html",
     styleUrls: ["./rezervasyon.component.css"]
 })
 export class RezervasyonComponent implements OnInit {
-
     rezervasyon: Rezervasyon;
     rezForm: FormGroup;
-    items: FormArray;
+    items = FormArray;
 
+   
     constructor(
         private hotelservice: HotelService,
         private activatedRouter: ActivatedRoute,
         private fb: FormBuilder
+
     ) { }
 
     createRezervasyon() {
@@ -43,8 +45,8 @@ export class RezervasyonComponent implements OnInit {
                 var adultCount = data.numberOfAd;
                 let adultArray = this.rezForm.controls.adultArray as FormArray;
                 let adult: any = {
-                    "nameSurname": "yetişkin adı",
-                    "birthday": "1.1.1950"
+                    "nameSurname": "",
+                    "birthday": ""
                 };
 
                 for (let i = 0; i < adultCount; i++) {
@@ -54,15 +56,13 @@ export class RezervasyonComponent implements OnInit {
                 var childCount = data.numberOfChd;
                 let childArray = this.rezForm.controls.childArray as FormArray;
                 let child: any = {
-                    "nameSurname": "çocuk adı",
-                    "birthday": "1.1.2010"
+                    "nameSurname": "",
+                    "birthday": ""
                 };
 
                 for (let i = 0; i < childCount; i++) {
                     childArray.push(this.fb.group(child));
                 }
-
-
 
                 this.rezForm.patchValue({
                     hotelName: data.hotelName,

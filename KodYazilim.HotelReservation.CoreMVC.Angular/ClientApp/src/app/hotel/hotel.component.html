@@ -1,50 +1,102 @@
-<div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dsHotels">
+﻿<div class="mat-elevation-z8">
+    <h3>Reservation Search</h3>
 
-    <!-- hotelName Column -->
-    <ng-container matColumnDef="hotelName">
-      <th mat-header-cell *matHeaderCellDef>Hotel Name</th>
-      <td mat-cell *matCellDef="let element">{{ element.hotelName }}</td>
-    </ng-container>
+    <div class="rez">
+        <input id="hotelName" type="text" placeholder="Enter Hotel Name"/>
+        <input class="textbox-n" placeholder="Enter check in date" type="text" onfocus="(this.type='date')" id="entry">
+        <input class="textbox-n" placeholder="Enter release date" type="text" onfocus="(this.type='date')" id="exit"><br />
+        <label id="lblAdults">Number of adults</label> <label id="lblChilds">Number of childs</label><br />
+        <input id="adult" type="number" min="1" value="1" />
+        <input id="child" type="number" min="0" max="3" [(ngModel)]="childCount" />
+        <label id="chdAge" *ngIf="childCount>=1">Child Ages</label><br />
+        <select class="custom-select" id="chd_1" *ngIf="childCount>=1">
+            <option selected>0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+        </select>
+        <select class="custom-select" id="chd_2" *ngIf="childCount>=2">
+            <option selected>0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+        </select>
+        <select class="custom-select" id="chd_3" *ngIf="childCount>=3">
+            <option selected>0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+        </select>
+        <button id="search" class="btn btn-warning" type="button">Search</button>
+    </div>
+</div>
 
-    <!-- checkInDate Column -->
-    <ng-container matColumnDef="checkInDate">
-      <th mat-header-cell *matHeaderCellDef>checkInDate</th>
-      <td mat-cell *matCellDef="let element">{{ element.checkInDate }}</td>
-    </ng-container>
+<div>
 
-    <!-- numberOfAd Column -->
-    <ng-container matColumnDef="numberOfAd">
-      <th mat-header-cell *matHeaderCellDef>numberOfAd</th>
-      <td mat-cell *matCellDef="let element">{{ element.numberOfAd }}</td>
-    </ng-container>
-
-    <!-- numberOfChd Column -->
-    <ng-container matColumnDef="numberOfChd">
-      <th mat-header-cell *matHeaderCellDef>numberOfChd</th>
-      <td mat-cell *matCellDef="let element">{{ element.numberOfChd }}</td>
-    </ng-container>
-
-    <!-- payDate Column -->
-    <ng-container matColumnDef="payDate">
-      <th mat-header-cell *matHeaderCellDef>payDate</th>
-      <td mat-cell *matCellDef="let element">{{ element.payDate }}</td>
-    </ng-container>
-
-    <!-- book Column -->
-    <ng-container matColumnDef="book">
-      <th mat-header-cell *matHeaderCellDef>book</th>
-      <mat-cell *matCellDef="let row">
-        <button type="button" (click)="gotoRezervasyonPage(row)" class="btn btn-success">Book</button>
-      </mat-cell>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
-
-  <mat-paginator
-    [pageSizeOptions]="[5, 10, 20]"
-    showFirstLastButtons
-  ></mat-paginator>
+    <table mat-table [dataSource]="dsHotels">
+        <!-- hotelName Column -->
+        <ng-container matColumnDef="hotelName">
+            <th mat-header-cell *matHeaderCellDef>Hotel Name</th>
+            <td mat-cell *matCellDef="let element">{{ element.hotelName }}</td>
+        </ng-container>
+        <!-- checkInDate Column -->
+        <ng-container matColumnDef="checkInDate">
+            <th mat-header-cell *matHeaderCellDef>checkInDate</th>
+            <td mat-cell *matCellDef="let element">{{ element.checkInDate }}</td>
+        </ng-container>
+        <!-- numberOfAd Column -->
+        <ng-container matColumnDef="numberOfAd">
+            <th mat-header-cell *matHeaderCellDef>numberOfAd</th>
+            <td mat-cell *matCellDef="let element">{{ element.numberOfAd }}</td>
+        </ng-container>
+        <!-- numberOfChd Column -->
+        <ng-container matColumnDef="numberOfChd">
+            <th mat-header-cell *matHeaderCellDef>numberOfChd</th>
+            <td mat-cell *matCellDef="let element">{{ element.numberOfChd }}</td>
+        </ng-container>
+        <!-- payDate Column -->
+        <ng-container matColumnDef="payDate">
+            <th mat-header-cell *matHeaderCellDef>payDate</th>
+            <td mat-cell *matCellDef="let element">{{ element.payDate }}</td>
+        </ng-container>
+        <!-- book Column -->
+        <ng-container matColumnDef="book">
+            <th mat-header-cell *matHeaderCellDef>book</th>
+            <mat-cell *matCellDef="let row">
+                <button type="button" (click)="gotoRezervasyonPage(row)" class="btn btn-success">Book</button>
+            </mat-cell>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons>
+    </mat-paginator>
 </div>
