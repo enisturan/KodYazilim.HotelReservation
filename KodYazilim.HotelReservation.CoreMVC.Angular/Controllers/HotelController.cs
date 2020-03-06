@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using KodYazilim.HotelReservation.CoreMVC.Angular.Data;
+﻿using KodYazilim.HotelReservation.CoreMVC.Angular.Data;
 using KodYazilim.HotelReservation.CoreMVC.Angular.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,12 +12,10 @@ namespace KodYazilim.HotelReservation.CoreMVC.Angular.Controllers
     {
         private readonly IAppRepository _appRepository;
         private readonly DataContext _context;
-        private readonly IMapper _mapper;
 
-        public HotelController(IAppRepository appRepository, DataContext context, IMapper mapper)
+        public HotelController(IAppRepository appRepository, DataContext context)
         {
             _context = context;
-            _mapper = mapper;
             _appRepository = appRepository;
         }
 

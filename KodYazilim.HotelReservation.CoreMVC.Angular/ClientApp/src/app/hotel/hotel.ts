@@ -8,7 +8,7 @@ export class Hotel {
   roomName:string;
   roomId:number;
   boardName:string;
-  checkInDate:string;
+  checkInDate:Date;
   duration:number;
   numberOfAd:number;
   numberOfChd:number;
@@ -19,5 +19,5 @@ export class Hotel {
   ch3AgeMin:number;
   ch3AgeMax:number;
   price:number;
-  payDate:string;  
+  payDate:Date;  
 }

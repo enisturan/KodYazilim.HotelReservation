@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, Validators, FormArray } from "@angular/forms";
 import { Rezervasyon } from "../rezervasyon";
 
 
+
+
 @Component({
     selector: "app-rezervasyon",
     templateUrl: "./rezervasyon.component.html",
@@ -15,12 +17,11 @@ export class RezervasyonComponent implements OnInit {
     rezForm: FormGroup;
     items = FormArray;
 
-   
+
     constructor(
         private hotelservice: HotelService,
         private activatedRouter: ActivatedRoute,
         private fb: FormBuilder
-
     ) { }
 
     createRezervasyon() {
@@ -79,6 +80,7 @@ export class RezervasyonComponent implements OnInit {
         );
         this.createRezervasyon();
     }
+
 
     add() {
         if (this.rezForm.valid) {

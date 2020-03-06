@@ -1,70 +1,40 @@
-﻿<div class="mat-elevation-z8">
-    <h3>Reservation Search</h3>
+﻿<h3>Reservation Search</h3>
 
-    <div class="rez">
-        <input id="hotelName" type="text" placeholder="Enter Hotel Name"/>
-        <input class="textbox-n" placeholder="Enter check in date" type="text" onfocus="(this.type='date')" id="entry">
-        <input class="textbox-n" placeholder="Enter release date" type="text" onfocus="(this.type='date')" id="exit"><br />
-        <label id="lblAdults">Number of adults</label> <label id="lblChilds">Number of childs</label><br />
-        <input id="adult" type="number" min="1" value="1" />
-        <input id="child" type="number" min="0" max="3" [(ngModel)]="childCount" />
-        <label id="chdAge" *ngIf="childCount>=1">Child Ages</label><br />
-        <select class="custom-select" id="chd_1" *ngIf="childCount>=1">
-            <option selected>0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-        </select>
-        <select class="custom-select" id="chd_2" *ngIf="childCount>=2">
-            <option selected>0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-        </select>
-        <select class="custom-select" id="chd_3" *ngIf="childCount>=3">
-            <option selected>0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-        </select>
-        <button id="search" class="btn btn-warning" type="button">Search</button>
-    </div>
-</div>
+<form [formGroup]="form">
+    <mat-form-field>
+        <label>Which Hotel?</label>
+        <input type="text" matInput
+               formControlName="name" [matAutocomplete]="name" />
+        <mat-autocomplete #name="matAutocomplete">
+            <mat-option *ngFor="let hotel of filteredHotels | async" [value]="hotel">
+                {{hotel}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
 
-<div>
+    <mat-form-field>
+        <label>Which Region?</label>
+        <input type="text" matInput formControlName="region" [matAutocomplete]="region" />
+        <mat-autocomplete #region="matAutocomplete">
+            <mat-option *ngFor="let region of filteredRegions | async" [value]="region">
+                {{region}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</form>
 
+
+<div class="mat-elevation-z8">
     <table mat-table [dataSource]="dsHotels">
         <!-- hotelName Column -->
         <ng-container matColumnDef="hotelName">
             <th mat-header-cell *matHeaderCellDef>Hotel Name</th>
             <td mat-cell *matCellDef="let element">{{ element.hotelName }}</td>
+        </ng-container>
+        <!-- regionName Column-->
+        <ng-container matColumnDef="regionName">
+            <th mat-header-cell *matHeaderCellDef>Region Name</th>
+            <td mat-cell *matCellDef="let element">{{ element.regionName }}</td>
         </ng-container>
         <!-- checkInDate Column -->
         <ng-container matColumnDef="checkInDate">
@@ -96,7 +66,6 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                   showFirstLastButtons>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
     </mat-paginator>
 </div>

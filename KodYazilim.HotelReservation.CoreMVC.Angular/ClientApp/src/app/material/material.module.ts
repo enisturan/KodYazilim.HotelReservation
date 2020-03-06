@@ -1,32 +1,28 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatTableModule, MatPaginatorModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatTableModule, MatPaginatorModule, MatSnackBarModule, MatAutocompleteModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 
 @NgModule({
     declarations: [],
-    imports: [
-        CommonModule,
-        MatTableModule,
-        MatPaginatorModule,
-        FormsModule,
-        MatFormFieldModule,
-        MatInputModule
-
-    ],
+    imports: [],
     exports: [
         MatTableModule,
         MatPaginatorModule,
+        ReactiveFormsModule,
+        FormsModule,
+        MatSnackBarModule,
+        MatAutocompleteModule,
         MatFormFieldModule,
         MatInputModule,
         BrowserAnimationsModule,
-        ReactiveFormsModule,
         BrowserModule
+    ],
     
-    ]
+    providers: [],
+    bootstrap: []
 })
 export class MaterialModule { }
