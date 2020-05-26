@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RezervasyonComponent } from './rezervasyon/rezervasyon.component';
 import { HotelComponent } from './hotel/hotel.component';
-
-
+import { RezervasyonComponent } from './rezervasyon/rezervasyon.component';
+import { DetailComponent } from './detail/detail.component';
+import { TestComponent } from './test/test.component';
 
 export const routes: Routes = [
     { path: 'hotel', component: HotelComponent },
-    { path: 'rezervasyon/:id', component: RezervasyonComponent },
-    { path: "**", redirectTo: "hotel", pathMatch: "full" }
+    { path: 'rezervazyon', component: RezervasyonComponent },
+    { path: 'detail', component: DetailComponent },
+    { path: 'test', component: TestComponent },
+    { path: "**", redirectTo: "hotel"}
 ];
+
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

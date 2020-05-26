@@ -1,57 +1,64 @@
+<mat-toolbar>
+    <button id="clsbtn" class="btn btn-danger" mat-stroked-button (click)="closeReservationPage()" tabindex="-1">X</button>
+</mat-toolbar>
 
 <h3 class="mt-2">Rezervasyon Ekle</h3>
-<form [formGroup]="rezForm" class="form-group" >
+<form *ngIf="rezForm" [formGroup]="rezForm" class="form-group">
     <div class="container mt-4">
         <div class="row">
-            <input type="text" class="form-control mt-2" formControlName="hotelName" placeholder="Hotel Adı" [(ngModel)]="hotelName" >
-            <input type="text" class="form-control mt-2" formControlName="price" placeholder="Fiyat" [(ngModel)]="price">
-            <input type="text" class="form-control mt-2" formControlName="checkInDate" placeholder="Giriş Tarihi" [(ngModel)]="checkInDate">
-            <input type="text" class="form-control mt-2" formControlName="payDate" placeholder="Çıkış Tarihi" [(ngModel)]="payDate">
-            <input type="text" class="form-control mt-2" formControlName="duration" placeholder="Süre" [(ngModel)]="duration">
-            <input type="text" class="form-control mt-2" formControlName="roomName" placeholder="Oda Tipi" [(ngModel)]="roomName">
+            <input type="text" class="form-control mt-2" formControlName="hotelName" placeholder="Hotel Adı">
+            <input type="text" class="form-control mt-2" formControlName="price" placeholder="Fiyat">
+            <input type="text" class="form-control mt-2" formControlName="checkInDate" placeholder="Giriş Tarihi">
+            <input type="text" class="form-control mt-2" formControlName="payDate" placeholder="Çıkış Tarihi">
+            <input type="text" class="form-control mt-2" formControlName="duration" placeholder="Süre">
+            <input type="text" class="form-control mt-2" formControlName="roomName" placeholder="Oda Tipi">
         </div>
     </div>
     <div class="container mt-4">
         <div class="row">
-            <div formArrayName="adultArray" *ngFor="let adult of rezForm.controls.adultArray?.value; let i = index" class="col-md-6 ">
-                <ng-container [formGroupName]="i">
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> Yetişkin </span>
+            <ng-container formArrayName="adultArray">
+                <div *ngFor="let item of adultArr.controls; let i = index;" class="col-md-6 ">
+                    <ng-container [formGroupName]="i">
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Yetişkin</span>
+                            </div>
+                            <input class="form-control" formControlName="nameSurname" placeholder="Adı Soyadı" type="text" />
                         </div>
-                        <input class="form-control" formControlName="nameSurname" placeholder="Adı Soyadı" type="text" />
-                    </div>
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend ">
-                            <span class="input-group-text">Yetişkin</span>
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend ">
+                                <span class="input-group-text">Yetişkin</span>
+                            </div>
+                            <input class="form-control" formControlName="birthDate" placeholder="Doğum Tarihi" type="text" />
                         </div>
-                        <input class="form-control" formControlName="birthday" placeholder="Doğum Tarihi" type="text" />
-                    </div>
-                </ng-container>
-            </div>
+                    </ng-container>
+                </div>
+            </ng-container>
         </div>
     </div>
     <div class="container mt-4">
         <div class="row">
-            <div formArrayName="childArray" *ngFor="let chd of rezForm.controls.childArray?.value; let i = index" class="col-md-6">
-                <ng-container [formGroupName]="i">
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Çocuk</span>
+            <ng-container formArrayName="childArray">
+                <div *ngFor="let item of childArr.controls; let i = index;" class="col-md-6">
+                    <ng-container [formGroupName]="i">
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Çocuk</span>
+                            </div>
+                            <input class="form-control" formControlName="nameSurname" placeholder="Adı Soyadı" type="text" />
                         </div>
-                        <input class="form-control" formControlName="nameSurname" placeholder="Adı Soyadı" type="text" />
-                    </div>
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Çocuk</span>
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Çocuk</span>
+                            </div>
+                            <input class="form-control" formControlName="birthDate" placeholder="Doğum Tarihi" type="text" />
                         </div>
-                        <input class="form-control" formControlName="birthday" placeholder="Doğum Tarihi" />
-                    </div>
-                </ng-container>
-            </div>
+                    </ng-container>
+                </div>
+            </ng-container>
         </div>
         <div>
-            <button type="submit" class="btn btn-success mt-4" (click)="add()">Kaydet</button>
+            <button type="submit" class="btn btn-success mt-2" (click)="add()">İnsert</button>
         </div>
     </div>
 </form>

@@ -1,15 +1,20 @@
 import { NgModule } from '@angular/core';
-import { MatTableModule, MatPaginatorModule, MatSnackBarModule, MatAutocompleteModule, MatFormFieldModule, MatInputModule} from '@angular/material';
+import { MatTableModule, MatPaginatorModule, MatSnackBarModule, MatAutocompleteModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatDialogModule, MatToolbarModule, MatIconModule, MatMenuModule} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-
-
+import { RezervasyonComponent } from '../rezervasyon/rezervasyon.component';
+import { HotelComponent } from '../hotel/hotel.component';
+import { DetailComponent } from '../detail/detail.component';
 
 @NgModule({
-    declarations: [],
-    imports: [],
-    exports: [
+    declarations: [
+        HotelComponent,
+        RezervasyonComponent,
+        DetailComponent,
+    ],
+
+    imports: [
         MatTableModule,
         MatPaginatorModule,
         ReactiveFormsModule,
@@ -19,10 +24,16 @@ import { BrowserModule } from '@angular/platform-browser';
         MatFormFieldModule,
         MatInputModule,
         BrowserAnimationsModule,
-        BrowserModule
+        BrowserModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatDialogModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatMenuModule,
     ],
-    
     providers: [],
-    bootstrap: []
+    bootstrap: [],
+    entryComponents: [RezervasyonComponent]
 })
 export class MaterialModule { }

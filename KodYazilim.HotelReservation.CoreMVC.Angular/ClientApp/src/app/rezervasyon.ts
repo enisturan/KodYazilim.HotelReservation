@@ -1,3 +1,4 @@
+
 export class Rezervasyon {
   Id:number;
   nameSurname:string;

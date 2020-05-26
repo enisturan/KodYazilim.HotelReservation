@@ -6,20 +6,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HotelComponent } from './hotel/hotel.component';
 import { MaterialModule } from './material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RezervasyonComponent } from './rezervasyon/rezervasyon.component';
-
-
+import { TestComponent } from './test/test.component';
 
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        HotelComponent,
-        RezervasyonComponent,
-    ],
+    declarations: [ AppComponent, TestComponent],
     
     imports: [
         BrowserModule,
@@ -29,10 +22,10 @@ import { RezervasyonComponent } from './rezervasyon/rezervasyon.component';
         MaterialModule,
         BrowserAnimationsModule,
         MatPaginatorModule,
-        FormsModule,
+        FormsModule
     ],
-    providers: [],
-    bootstrap: [AppComponent],
 
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

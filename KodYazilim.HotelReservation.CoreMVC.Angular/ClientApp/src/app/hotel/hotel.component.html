@@ -1,30 +1,81 @@
-﻿<h3>Reservation Search</h3>
+﻿
+<button id="btnMenu" class="btn btn-warning" mat-button [matMenuTriggerFor]="menu">Reservations Details</button>
+<mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="search2()">Price Search</button>
+    <button mat-menu-item (click)="navigate()">Reservations List</button>
+</mat-menu>
 
-<form [formGroup]="form">
+
+<form [formGroup]="form" *ngIf="showMenu">
     <mat-form-field>
         <label>Which Hotel?</label>
-        <input type="text" matInput
-               formControlName="name" [matAutocomplete]="name" />
+        <input type="text" matInput [matAutocomplete]="name" formControlName="name" (ngModelChange)="filterHotelsByName($event)"/>
         <mat-autocomplete #name="matAutocomplete">
-            <mat-option *ngFor="let hotel of filteredHotels | async" [value]="hotel">
+            <mat-option *ngFor="let hotel of filteredHotelNames | async" [value]="hotel">
                 {{hotel}}
             </mat-option>
         </mat-autocomplete>
     </mat-form-field>
-
+    &nbsp;
     <mat-form-field>
         <label>Which Region?</label>
-        <input type="text" matInput formControlName="region" [matAutocomplete]="region" />
+        <input type="text" matInput [matAutocomplete]="region" formControlName="region" (ngModelChange)="filterByRegion($event)"/>
         <mat-autocomplete #region="matAutocomplete">
             <mat-option *ngFor="let region of filteredRegions | async" [value]="region">
                 {{region}}
             </mat-option>
         </mat-autocomplete>
     </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+        <label>Entry Date?</label>
+        <input matInput [matDatepicker]="mdpStartDate" formControlName="startDate" (ngModelChange)="filterByDates()">
+        <mat-datepicker-toggle matSuffix [for]="mdpStartDate"></mat-datepicker-toggle>
+        <mat-datepicker #mdpStartDate></mat-datepicker>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+        <label>Pay Date?</label>
+        <input matInput [matDatepicker]="mdpEndDate" formControlName="endDate" (ngModelChange)="filterByDates()">
+        <mat-datepicker-toggle matSuffix [for]="mdpEndDate"></mat-datepicker-toggle>
+        <mat-datepicker #mdpEndDate></mat-datepicker>
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+        <label>Adult Number?</label>
+        <input type="number" min="1" matInput formControlName="adult" (ngModelChange)="filterPersonCount()" >
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field>
+        <label>Chd Number?</label>
+        <input type="number" min="0" max="3" value="0" matInput formControlName="chd" (ngModelChange)="filterPersonCount()" >
+    </mat-form-field>
+    &nbsp;
+    <button type="button" class="btn btn-success" (click)="search()">Search</button>
+    <div>
+        <div *ngFor="let e of children; index as idx;">
+            <select class="custom-select">
+                <option selected>0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+        </div>
+    </div>
 </form>
 
 
-<div class="mat-elevation-z8">
+
+<div class="mat-elevation-z8" *ngIf="showList">
     <table mat-table [dataSource]="dsHotels">
         <!-- hotelName Column -->
         <ng-container matColumnDef="hotelName">
@@ -60,12 +111,14 @@
         <ng-container matColumnDef="book">
             <th mat-header-cell *matHeaderCellDef>book</th>
             <mat-cell *matCellDef="let row">
-                <button type="button" (click)="gotoRezervasyonPage(row)" class="btn btn-success">Book</button>
+                <button class="btn btn-success" (click)="openRezervasyonPage(row)"> Book </button>
             </mat-cell>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+    <mat-paginator [length]="25"
+                   [pageSize]="5"
+                   [pageSizeOptions]="[5, 10, 25]">
     </mat-paginator>
 </div>
